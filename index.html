@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASHION-MATRIX | Online Clothing Store</title>
+    <!-- Keeps your original stylesheet if src/css/home.css is uploaded -->
+    <link rel="stylesheet" type="text/css" href="src/css/home.css">
+    <style>
+        /* Fallback & layout styles so the page renders cleanly on GitHub Pages */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #222;
+        }
+        /* Header & Navigation */
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #e63946;
+        }
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #e63946;
+        }
+
+        /* Slider */
+        .sliderbox {
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background: #222;
+        }
+        #slider {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+        .slider-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            padding: 16px 24px;
+            border-left: 4px solid #e63946;
+        }
+
+        /* Section Divider */
+        .section-title {
+            text-align: center;
+            margin: 35px 0 20px;
+            font-size: 26px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Product Grid */
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+        .item-box {
+            width: 260px;
+            height: 340px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            background-color: #ddd;
+        }
+        .item-box-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .item-box:hover .item-box-overlay,
+        .bot-menu-box-1:hover .item-box-overlay,
+        .bot-menu-box-2:hover .item-box-overlay,
+        .bot-menu-box-3:hover .item-box-overlay {
+            opacity: 1;
+        }
+        .item-view-button, .cat-view-button {
+            padding: 10px 22px;
+            background-color: #e63946;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .item-view-button:hover, .cat-view-button:hover {
+            background-color: #c1121f;
+        }
+        .item-box-disc {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(17, 17, 17, 0.88);
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+        }
+        .item-box-disc p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .item-box-disc span {
+            font-size: 14px;
+            color: #ffb703;
+        }
+
+        /* Category Boxes (Mens / Women / Kids) */
+        .bot-menue {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+        }
+        .bot-menu-box-1, .bot-menu-box-2, .bot-menu-box-3 {
+            width: 360px;
+            height: 240px;
+            border-radius: 8px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .bot-menu-box-1 {
+            background-image: url('https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80');
+        }
+        .bot-menu-box-2 {
+            background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80');
+        }
+        .bot-menu-box-3 {
+            background-image: url('https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80');
+        }
+        /* Keep category buttons visible on mobile/default too */
+        .bot-menue .item-box-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 24px 20px;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+        .clrfix {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (Replaces header.php) -->
+    <header>
+        <a href="index.html" class="logo">FASHION<span>-MATRIX</span></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#featured">Featured</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About Us</a>
+            <a href="#cart" onclick="alert('Cart feature requires PHP/MySQL backend hosting (e.g. InfinityFree).')">Cart (0)</a>
+        </nav>
+    </header>
+
+    <!-- Slider Start -->
+    <div class="sliderbox">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1360&q=80" width="1360" height="450" id="slider" alt="Fashion Banner">
+        <div class="slider-caption">
+            <h2>New Season Arrivals</h2>
+            <p>Explore the latest styles for Men, Women & Kids</p>
+        </div>
+    </div>
+    <!-- Slider End -->
+
+    <h2 class="section-title" id="featured">Featured Collection</h2>
+
+    <!-- Static Product Cards (Replaces PHP MySQL loop) -->
+    <div class="products-container">
+
+        <div class="item-box" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80');">
+            <div class="item-box-overlay">
+                <button class="item-view-button" onclick="alert('Classic White Cotton Tee - Size: S | Price: ₹799')">View Item</button>
+            </div>
+            <div class="item-box-disc">
+                <p>Classic Cotton Tee</p>
+                <span>₹799</span>
+            </div>
+        </div>
+
+        <div class="item-box" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80');">
+            <div class="item-box-overlay">
+                <button class="item-view-button" onclick="alert('Urban Denim Jacket - Size: S | Price: ₹2,199')">View Item</button>
+            </div>
+            <div class="item-box-disc">
+                <p>Urban Denim Jacket</p>
+                <span>₹2,199</span>
+            </div>
+        </div>
+
+        <div class="item-box" style="background-image: url('https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=600&q=80');">
+            <div class="item-box-overlay">
+                <button class="item-view-button" onclick="alert('Evening Velvet Dress - Size: S | Price: ₹2,499')">View Item</button>
+            </div>
+            <div class="item-box-disc">
+                <p>Evening Velvet Dress</p>
+                <span>₹2,499</span>
+            </div>
+        </div>
+
+        <div class="item-box" style="background-image: url('https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=600&q=80');">
+            <div class="item-box-overlay">
+                <button class="item-view-button" onclick="alert('Kids Casual Hoodie - Size: S | Price: ₹999')">View Item</button>
+            </div>
+            <div class="item-box-disc">
+                <p>Kids Casual Hoodie</p>
+                <span>₹999</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clrfix"></div>
+
+    <h2 class="section-title" id="categories">Shop By Category</h2>
+
+    <!-- Bottom Menu Box (Replaces menItem.php, womenItem.php, kidItems.php links) -->
+    <div class="bot-menue">
+        <div class="bot-menu-box-1">
+            <div class="item-box-overlay">
+                <button class="item-view-button" onclick="alert('Showing Mens Collection')">Mens</button>
+            </div>
+        </div>
+
+        <div class="bot-menu-box-2">
+            <div class="item-box-overlay">
+                <button class="cat-view-button" onclick="alert('Showing Women Collection')">Women</button>
+            </div>
+        </div>
+
+        <div class="bot-menu-box-3">
+            <div class="item-box-overlay">
+                <button class="cat-view-button" onclick="alert('Showing Kids Collection')">Kids</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Replaces footer.php) -->
+    <footer id="about">
+        <p>&copy; 2026 FASHION-MATRIX. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Working Image Slider Script (Replaces src/js/slider.js) -->
+    <script>
+        const sliderImages = [
+            "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1360&q=80",
+            "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1360&q=80",
+            "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1360&q=80"
+        ];
+        let currentSlide = 0;
+        const sliderElement = document.getElementById("slider");
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % sliderImages.length;
+            sliderElement.src = sliderImages[currentSlide];
+        }, 3500);
+    </script>
+
+</body>
+</html>
